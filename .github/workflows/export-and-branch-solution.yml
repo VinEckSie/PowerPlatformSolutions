@@ -7,7 +7,7 @@ on:
     inputs:
       # Change this value
       solution_name:
-        description: 'name of the solution to worked on from Power Platform'
+        description: 'PocketInvest'
         required: true
         default: ALMLab
        #Do Not change these values
