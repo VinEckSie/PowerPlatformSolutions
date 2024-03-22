@@ -3,7 +3,6 @@ name: export-solution-on-main
 #  unpack it and prepare, commit and push
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: '00 23 * * 1,2,3,4,5'
 
