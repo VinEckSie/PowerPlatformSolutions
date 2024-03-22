@@ -4,7 +4,8 @@ name: Release action
 
 on:
   release:
-      types: [created]        
+    types:
+      - published     
 permissions:
   contents: write
 jobs:
