@@ -23,6 +23,5 @@ jobs:
       PROD_CLIENT_ID: 886fb551-178c-43f0-9e1d-5720a81a0ec2
       PROD_TENANT_ID: 189fc259-0274-4dfb-b187-e2b6dcaf0e88 
     secrets:
-      DEVSECRET: ${{ secrets.DEVSECRET }}
       BUILDSECRET: ${{ secrets.BUILDSECRET }}
       PRODSECRET: ${{ secrets.PRODSECRET }}
