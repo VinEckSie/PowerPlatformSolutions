@@ -52,7 +52,7 @@ jobs:
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
         solution-file: ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
-        solution-folder: /solution/${{ env.SOLUTION_NAME }}
+        solution-folder: ${{ env.SOLUTION_NAME }}
         solution-type: 'Unmanaged'
         overwrite-files: true
         
@@ -60,7 +60,7 @@ jobs:
       run: |
         #rm -rf ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
         Remove-Item -Path "${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip" -Recurse -Force  # Use Remove-Item to delete the directory
-        cp -r /solution/${{ env.SOLUTION_NAME }} ./${{ env.SOLUTION_NAME }}
+        #cp -r /solution/${{ env.SOLUTION_NAME }} ./${{ env.SOLUTION_NAME }}
         git config --global user.email "no-reply@github.com"
         git config --global user.name "GitHub Actions"
         git checkout main
