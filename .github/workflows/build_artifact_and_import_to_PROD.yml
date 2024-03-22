@@ -83,7 +83,7 @@ jobs:
       with:
         environment-url: ${{inputs.BUILD_ENVIRONMENT_URL}}
         app-id: ${{inputs.CLIENT_ID}}
-        client-secret: ${{ secrets.envSecret }} 
+        client-secret: ${{ secrets.BUILDSECRET }} 
         tenant-id: ${{inputs.TENANT_ID}}
         solution-name: ${{ inputs.solution_name }}
         managed: true
