@@ -52,13 +52,13 @@ jobs:
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
         solution-file: ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
-        solution-folder: ${{ env.SOLUTION_NAME }}
+        solution-folder: /solution/${{ env.SOLUTION_NAME }}
         solution-type: 'Unmanaged'
         overwrite-files: true
         
     - name: Commit changes
       run: |
-        cp -r ${{ env.SOLUTION_NAME }} ./${{ env.SOLUTION_NAME }}
+        cp -r /solution/${{ env.SOLUTION_NAME }} ./${{ env.SOLUTION_NAME }}
         git config --global user.email "no-reply@github.com"
         git config --global user.name "GitHub Actions"
         git checkout main
