@@ -1,6 +1,6 @@
 name: export-solution-on-main
 # Export solution from DEV environment
-#  unpack it and prepare, commit and push a git branch with the changes
+#  unpack it and prepare, commit and push
 
 on:
   workflow_dispatch:
@@ -8,7 +8,6 @@ on:
 #    - cron: '*/5 * * * 1,2,3,4,5'
 
 env:
-#edit your values here
   ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
   CLIENT_ID: '20e6d751-0038-4647-ab6e-2ecc5286aec7'
   TENANT_ID: '189fc259-0274-4dfb-b187-e2b6dcaf0e88'
@@ -55,7 +54,7 @@ jobs:
         
     - name: Commit changes
       run: |
-        Remove-Item -Path "${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip" -Recurse -Force  # Use Remove-Item to delete the directory
+        Remove-Item -Path "${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip" -Recurse -Force
         git config --global user.email "no-reply@github.com"
         git config --global user.name "GitHub Actions"
         git checkout main
