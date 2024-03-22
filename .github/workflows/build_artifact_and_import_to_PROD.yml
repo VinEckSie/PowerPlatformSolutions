@@ -44,6 +44,9 @@ on:
       envSecret:
         description: 'The secret value for authentication using SPN'
         required: true
+      BUILDSECRET:
+        description: 'The secret value for authentication using SPN'
+        required: true
 
 jobs:
   convert-to-managed:
