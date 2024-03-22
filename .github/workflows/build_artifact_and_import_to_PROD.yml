@@ -20,10 +20,6 @@ on:
         description: 'staging the unpacked solution folder before check-in *do not change*'
         type: string
         default: out/solutions/
-      solution_source_folder: 
-       description: 'folder name to be created and checked in *do not change*'
-       type: string
-       default: solutions/
       solution_release_folder:
        description: 'folder where the released binaries are going to be hosted *do not change*'
        type: string
@@ -64,7 +60,7 @@ jobs:
     - name: Pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
-        solution-folder: ${{ inputs.solution_source_folder}}/${{ inputs.solution_name }}
+        solution-folder: ${{ inputs.solution_name }}
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
         solution-type: Unmanaged
 
