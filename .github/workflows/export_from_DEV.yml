@@ -31,7 +31,7 @@ jobs:
       with:
         environment-url: ${{env.ENVIRONMENT_URL}}
         app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
+        client-secret: ${{ secrets.DEVSECRET }}
         tenant-id: ${{env.TENANT_ID}}
         
     - name: export-solution action
@@ -39,7 +39,7 @@ jobs:
       with:
         environment-url: ${{env.ENVIRONMENT_URL}}
         app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }}
+        client-secret: ${{ secrets.DEVSECRET }}
         tenant-id: ${{env.TENANT_ID}}
         solution-name: ${{ env.SOLUTION_NAME }}
         solution-output-file: ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
