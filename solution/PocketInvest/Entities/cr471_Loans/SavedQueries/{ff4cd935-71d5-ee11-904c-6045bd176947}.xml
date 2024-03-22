@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{ff4cd935-71d5-ee11-904c-6045bd176947}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="cr471_name" select="1" icon="1" preview="1">
+        <row name="result" id="cr471_loansid">
+          <cell name="cr471_name" width="200" />
+          <cell name="cr471_amount" width="100" />
+          <cell name="cr471_amountfunded" width="128" />
+          <cell name="cr471_availableforinvest" width="144" />
+          <cell name="cr471_dateofissue" width="114" />
+          <cell name="cr471_description" width="106" />
+          <cell name="cr471_interestrate" width="108" />
+          <cell name="ves_investedamount" width="137" />
+          <cell name="cr471_loantype" width="100" />
+          <cell name="modifiedby" width="112" />
+          <cell name="cr471_ltv" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="cr471_loans">
+          <attribute name="cr471_name" />
+          <attribute name="cr471_loansid" />
+          <attribute name="cr471_amount" />
+          <attribute name="cr471_amountfunded" />
+          <attribute name="cr471_availableforinvest" />
+          <attribute name="cr471_dateofissue" />
+          <attribute name="cr471_description" />
+          <attribute name="cr471_interestrate" />
+          <attribute name="ves_investedamount" />
+          <attribute name="cr471_loantype" />
+          <attribute name="modifiedby" />
+          <attribute name="cr471_ltv" />
+          <filter type="and">
+            <condition attribute="ves_investedamount" operator="null" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Available loans" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
