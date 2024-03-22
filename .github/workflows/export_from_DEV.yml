@@ -5,7 +5,7 @@ name: export_from_DEV
 on:
   workflow_dispatch:
   schedule:
-    - cron: '00 23 * * 1,2,3,4,5'
+    - cron: '00 21 * * *'
 
 env:
   ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
