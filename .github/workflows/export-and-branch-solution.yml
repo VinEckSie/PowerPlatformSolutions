@@ -57,7 +57,6 @@ jobs:
         
     - name: Commitchanges
       run: |
-        rm -rf ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
         git config --global user.email "no-reply@github.com"
         git config --global user.name "GitHub Actions"
         git checkout main
