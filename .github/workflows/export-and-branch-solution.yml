@@ -4,7 +4,7 @@ name: export-and-branch-solution
 
 on:
   schedule:
-    - cron: '* * * * 1,2,3,4,5'
+    - cron: '*/5 * * * 1,2,3,4,5'
   workflow_dispatch:
     inputs:
       # Change this value
