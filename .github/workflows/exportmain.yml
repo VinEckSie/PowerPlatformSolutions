@@ -58,7 +58,8 @@ jobs:
         
     - name: Commit changes
       run: |
-        rm -rf ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
+        #rm -rf ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
+        Remove-Item -Path "${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip" -Recurse -Force  # Use Remove-Item to delete the directory
         cp -r /solution/${{ env.SOLUTION_NAME }} ./${{ env.SOLUTION_NAME }}
         git config --global user.email "no-reply@github.com"
         git config --global user.name "GitHub Actions"
