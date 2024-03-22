@@ -4,8 +4,8 @@ name: export-solution-on-main
 
 on:
   workflow_dispatch:
-#  schedule:
-#    - cron: '*/5 * * * 1,2,3,4,5'
+  schedule:
+    - cron: '00 23 * * 1,2,3,4,5'
 
 env:
   ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
