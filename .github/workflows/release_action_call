@@ -1,0 +1,22 @@
+name: Release action
+# Call the reusable workflow release-solution-with-inputs.yml
+# Release your solution to prod when you create a new release.
+
+on:
+  release:
+      types: [created]        
+permissions:
+  contents: write
+jobs:
+  Release-solution-PocketInvest:
+    uses: ./.github/workflows/build_artifact_and_import_to_PROD.yml
+    with:
+      #You can specify the solution name here
+      solution_name: PocketInvest
+      #Update your values here
+      BUILD_ENVIRONMENT_URL: https://pl400-build.crm16.dynamics.com/
+      PRODUCTION_ENVIRONMENT_URL: https://pl400-prod.crm16.dynamics.com/
+      CLIENT_ID: <APP_ID>
+      TENANT_ID: <TENANT_ID>      
+    secrets:
+      envSecret: ${{ secrets.PowerPlatformSPN }}
