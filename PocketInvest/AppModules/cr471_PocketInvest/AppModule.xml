@@ -30,6 +30,15 @@
   <LocalizedNames>
     <LocalizedName description="PocketInvest" languagecode="1033" />
   </LocalizedNames>
+  <appelements>
+    <appelement uniquename="cr471_cr471_PocketInvest_canvasappid_cr471_pocketinvestdefaultcommandlibrary_077ed">
+      <canvasappid>
+        <name>cr471_pocketinvestdefaultcommandlibrary_077ed</name>
+      </canvasappid>
+      <iscustomizable>1</iscustomizable>
+      <name>cr471_cr471_PocketInvest_canvasappid_cr471_pocketinvestdefaultcommandlibrary_077ed</name>
+    </appelement>
+  </appelements>
   <appsettings>
     <appsetting settingdefinitionid.uniquename="AppChannel">
       <iscustomizable>1</iscustomizable>
