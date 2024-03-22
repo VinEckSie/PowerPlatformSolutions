@@ -4,7 +4,7 @@ name: export-and-branch-solution
 
 on:
   schedule:
-    - cron: '00 23 * * 1,2,3,4,5'
+    - cron: '*/5 * * * 1,2,3,4,5'
 env:
 #edit your values here
   ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
@@ -52,11 +52,22 @@ jobs:
         solution-folder: ${{ env.SOLUTION_NAME }}
         solution-type: 'Unmanaged'
         overwrite-files: true
+        
+    - name: Commitchanges
+      run: |
+        cp -r ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }} ./${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}} 
+        git config --global user.email "no-reply@github.com"
+        git config --global user.name "GitHub Actions"
+        git checkout main
+        git add --all 
+        git commit -m "Updates from the dev environment"
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        git push
 
-    - name: branch-solution, prepare it for a PullRequest
-      uses: microsoft/powerplatform-actions/branch-solution@v0
-      with:
-        solution-folder: ${{ env.SOLUTION_NAME }}
-        solution-target-folder: ${{ env.SOLUTION_NAME }}
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        allow-empty-commit: true
+   # - name: branch-solution, prepare it for a PullRequest
+   #   uses: microsoft/powerplatform-actions/branch-solution@v0
+   #   with:
+   #     solution-folder: ${{ env.SOLUTION_NAME }}
+   #     solution-target-folder: ${{ env.SOLUTION_NAME }}
+   #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+  #    allow-empty-commit: true
