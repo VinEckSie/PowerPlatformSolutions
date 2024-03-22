@@ -1,4 +1,4 @@
-name: export-and-branch-solution
+| ': export-and-branch-solution
 # Export solution from DEV environment
 #  unpack it and prepare, commit and push a git branch with the changes
 
@@ -63,12 +63,6 @@ jobs:
         git add --all 
         git commit -m "Updates from the dev environment"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        git push
+        git push origin main
 
-   # - name: branch-solution, prepare it for a PullRequest
-   #   uses: microsoft/powerplatform-actions/branch-solution@v0
-   #   with:
-   #     solution-folder: ${{ env.SOLUTION_NAME }}
-   #     solution-target-folder: ${{ env.SOLUTION_NAME }}
-   #     repo-token: ${{ secrets.GITHUB_TOKEN }}
-  #    allow-empty-commit: true
+   
