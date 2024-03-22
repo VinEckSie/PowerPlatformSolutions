@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{fcd518d1-eb6b-4fbd-9596-6c61e55e65b8}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="cr471_name" select="1" icon="1" preview="1">
+        <row name="result" id="cr471_loansid">
+          <cell name="cr471_name" width="300" />
+          <cell name="cr471_amount" width="100" />
+          <cell name="ves_investedamount" width="137" />
+          <cell name="cr471_interestrate" width="108" />
+          <cell name="cr471_description" width="106" />
+          <cell name="cr471_initialterm" width="103" />
+          <cell name="cr471_amountfunded" width="128" />
+          <cell name="cr471_availableforinvest" width="144" />
+          <cell name="cr471_dateofissue" width="114" />
+          <cell name="cr471_loantype" width="100" />
+          <cell name="cr471_ltv" width="100" />
+          <cell name="cr471_originator" width="100" />
+          <cell name="cr471_platform" width="100" />
+          <cell name="cr471_status" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical" distinct="true">
+        <entity name="cr471_loans">
+          <attribute name="cr471_loansid" />
+          <attribute name="cr471_name" />
+          <order attribute="cr471_name" descending="false" />
+          <attribute name="cr471_amount" />
+          <attribute name="cr471_amountfunded" />
+          <attribute name="cr471_availableforinvest" />
+          <attribute name="cr471_dateofissue" />
+          <attribute name="cr471_description" />
+          <attribute name="cr471_initialterm" />
+          <attribute name="cr471_interestrate" />
+          <attribute name="cr471_loantype" />
+          <attribute name="cr471_ltv" />
+          <attribute name="cr471_originator" />
+          <attribute name="cr471_platform" />
+          <attribute name="cr471_status" />
+          <filter type="and">
+            <condition attribute="ves_investedamount" operator="gt" value="0" />
+          </filter>
+          <attribute name="ves_investedamount" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Loans" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

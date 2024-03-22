@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppModule>
+  <UniqueName>cr471_PocketInvest</UniqueName>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <WebResourceId>953b9fac-1e5e-e611-80d6-00155ded156f</WebResourceId>
+  <OptimizedFor></OptimizedFor>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <FormFactor>1</FormFactor>
+  <ClientType>4</ClientType>
+  <NavigationType>0</NavigationType>
+  <AppModuleComponents>
+    <AppModuleComponent type="1" schemaName="cr471_loans" />
+    <AppModuleComponent type="1" schemaName="cr471_originator" />
+    <AppModuleComponent type="1" schemaName="cr471_platform" />
+    <AppModuleComponent type="1" schemaName="cr471_transaction" />
+    <AppModuleComponent type="26" id="{de37525a-06e5-4075-8848-25b9a1e70c6f}" />
+    <AppModuleComponent type="26" id="{aa780f5c-5fc5-472c-bd87-5a812c94ce56}" />
+    <AppModuleComponent type="26" id="{ff4cd935-71d5-ee11-904c-6045bd176947}" />
+    <AppModuleComponent type="26" id="{fcd518d1-eb6b-4fbd-9596-6c61e55e65b8}" />
+    <AppModuleComponent type="26" id="{69d783ad-50d6-4835-b52e-8884b0ef36ea}" />
+    <AppModuleComponent type="26" id="{afdb6883-7e50-45be-827f-9a0d2d8500cb}" />
+    <AppModuleComponent type="60" id="{ef6c92f2-c7d0-ee11-904d-002248e53c36}" />
+    <AppModuleComponent type="62" schemaName="cr471_PocketInvest" />
+  </AppModuleComponents>
+  <AppModuleRoleMaps>
+    <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />
+    <Role id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+  </AppModuleRoleMaps>
+  <LocalizedNames>
+    <LocalizedName description="PocketInvest" languagecode="1033" />
+  </LocalizedNames>
+  <appsettings>
+    <appsetting settingdefinitionid.uniquename="AppChannel">
+      <iscustomizable>1</iscustomizable>
+      <value>1</value>
+    </appsetting>
+  </appsettings>
+</AppModule>

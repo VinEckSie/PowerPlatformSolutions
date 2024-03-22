@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml version="9.2.24031.170" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SolutionManifest>
+    <UniqueName>PocketInvest</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="PocketInvest" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions />
+    <Version>1.0.0.10</Version>
+    <Managed>0</Managed>
+    <Publisher>
+      <UniqueName>VinEckSie</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="VES" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description description="Vincent Eckert Sierota" languagecode="1033" />
+      </Descriptions>
+      <EMailAddress xsi:nil="true"></EMailAddress>
+      <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
+      <CustomizationPrefix>ves</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>94868</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+        <Address>
+          <AddressNumber>2</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents>
+      <RootComponent type="1" schemaName="cr471_loans" behavior="0" />
+      <RootComponent type="1" schemaName="cr471_originator" behavior="0" />
+      <RootComponent type="1" schemaName="cr471_platform" behavior="0" />
+      <RootComponent type="60" id="{b30108f9-bcd0-ee11-904d-002248e53c36}" />
+      <RootComponent type="60" id="{ef6c92f2-c7d0-ee11-904d-002248e53c36}" behavior="0" />
+      <RootComponent type="62" schemaName="cr471_PocketInvest" behavior="0" />
+      <RootComponent type="80" schemaName="cr471_PocketInvest" behavior="0" />
+      <RootComponent type="9" schemaName="cr471_loancategory" behavior="0" />
+      <RootComponent type="9" schemaName="cr471_loanstatus" behavior="0" />
+    </RootComponents>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="1" schemaName="cr471_transaction" displayName="Transaction" solution="Active" />
+        <Dependent type="1" schemaName="cr471_loans" displayName="Loan" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="cr471_transaction" displayName="Transaction" solution="Active" />
+        <Dependent type="1" schemaName="cr471_originator" displayName="Originator" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="cr471_transaction" displayName="Transaction" solution="Active" />
+        <Dependent type="1" schemaName="cr471_platform" displayName="Platform" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="cr471_transaction" displayName="Transaction" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Loan" id="{c32eb9da-5d8d-43c6-b9d1-4f2e281fc155}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="cr471_transaction" displayName="Transaction" solution="Active" />
+        <Dependent type="62" schemaName="cr471_PocketInvest" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="cr471_transaction" displayName="Transaction" solution="Active" />
+        <Dependent type="80" schemaName="cr471_PocketInvest" displayName="PocketInvest" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="cr471_Transaction_LoanId_cr471_Loans" displayName="cr471_Transaction_LoanId_cr471_Loans" parentSchemaName="cr471_loans" parentDisplayName="Loan" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Loan" id="{c32eb9da-5d8d-43c6-b9d1-4f2e281fc155}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Transactions" displayName="Active Transactions" parentSchemaName="cr471_transaction" parentDisplayName="Transaction" solution="Active" id="{f328c280-7617-453f-ba24-ab3088c2f9a8}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Loan" id="{c32eb9da-5d8d-43c6-b9d1-4f2e281fc155}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="cr471_PocketInvestScripting" displayName="cr471_PocketInvestScripting" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Loan" id="{c32eb9da-5d8d-43c6-b9d1-4f2e281fc155}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="cr471_PocketInvestScripting" displayName="cr471_PocketInvestScripting" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Platform" id="{dcd7a437-6983-4c8a-9dea-534b0cba21b5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)" />
+        <Dependent type="80" schemaName="cr471_PocketInvest" displayName="PocketInvest" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="mspp_poll_placement.svg" displayName="mspp_poll_placement.svg" solution="PowerPages_AppResources (1.0.2312.1)" />
+        <Dependent type="62" schemaName="cr471_PocketInvest" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="mspp_site_markers.svg" displayName="mspp_site_markers.svg" solution="PowerPages_AppResources (1.0.2312.1)" />
+        <Dependent type="62" schemaName="cr471_PocketInvest" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="sample_Challenge" displayName="sample_Challenge" solution="InnovationHub (0.0.0.1)" />
+        <Dependent type="62" schemaName="cr471_PocketInvest" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="sample_FundraiserIcon" displayName="sample_FundraiserIcon" solution="msdyn_SampleApp (1.0.0.4)" />
+        <Dependent type="62" schemaName="cr471_PocketInvest" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="sample_TeamProject" displayName="sample_TeamProject" solution="InnovationHub (0.0.0.1)" />
+        <Dependent type="62" schemaName="cr471_PocketInvest" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="ves_PocketInvestnamespace.DataSetGrid" displayName="ves_PocketInvestnamespace.DataSetGrid" solution="Active" />
+        <Dependent type="26" schemaName="Active Platforms" displayName="Active Platforms" parentSchemaName="cr471_platform" parentDisplayName="Platform" id="{39ab8eed-94d0-ee11-904d-002248e53c36}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="9" schemaName="cr471_reviewstatus" displayName="ReviewStatus" solution="Active" />
+        <Dependent type="2" schemaName="cr471_reviewstatus" displayName="Review status" parentSchemaName="cr471_loans" parentDisplayName="Loan" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="AppChannel" solution="msdyn_AppFrameworkInfraExtensions (1.0.0.7)" id.uniquename="AppChannel" />
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=cr471_PocketInvest,settingdefinitionid.uniquename=AppChannel" id.parentappmoduleid.uniquename="cr471_PocketInvest" id.settingdefinitionid.uniquename="AppChannel" />
+      </MissingDependency>
+    </MissingDependencies>
+  </SolutionManifest>
+</ImportExportXml>
