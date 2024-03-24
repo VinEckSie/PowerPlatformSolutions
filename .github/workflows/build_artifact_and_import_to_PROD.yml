@@ -94,7 +94,7 @@ jobs:
         client-secret: ${{ secrets.BUILDSECRET }}
         tenant-id: ${{inputs.BUILD_TENANT_ID}}
         name: PocketInvest
-        version: github.event.release.tag_name
+        version: 1.0.0.11
 
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v0
