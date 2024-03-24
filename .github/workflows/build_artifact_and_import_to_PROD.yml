@@ -86,7 +86,7 @@ jobs:
         force-overwrite: true
         publish-changes: true
 
-    - name: 'Increase the package version'
+    - name: Power Platform Set Online Solution Version
       uses: microsoft/powerplatform-actions/set-online-solution-version@v0      
       with:
         environment-url: ${{inputs.BUILD_ENVIRONMENT_URL}}
