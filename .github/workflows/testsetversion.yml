@@ -24,6 +24,9 @@ jobs:
       with:
         lfs: true
 
+    - name: Install PAC
+      run: npm install @actions/http-client
+
     - name: Power Platform Set Online Solution Version
       uses: microsoft/powerplatform-actions/set-online-solution-version@v1.4.0
       with:
