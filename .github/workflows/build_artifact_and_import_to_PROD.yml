@@ -90,6 +90,9 @@ jobs:
       uses: microsoft/powerplatform-actions/set-online-solution-version@v0      
       with:
         environment-url: ${{inputs.BUILD_ENVIRONMENT_URL}}
+        app-id: ${{inputs.BUILD_CLIENT_ID}}
+        client-secret: ${{ secrets.BUILDSECRET }}
+        tenant-id: ${{inputs.BUILD_TENANT_ID}}
         name: PocketInvest
         version: github.event.release.tag_name
 
