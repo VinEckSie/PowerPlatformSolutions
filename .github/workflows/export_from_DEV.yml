@@ -54,6 +54,7 @@ jobs:
         path: ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
 
     - name: unpack-solution action
+      if: ${{ success() }}
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
         solution-file: ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
@@ -62,6 +63,7 @@ jobs:
         overwrite-files: true
         
     - name: Commit changes
+      if: ${{ success() }}
       run: |
         Remove-Item -Path "${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip" -Recurse -Force
         git config --global user.email "no-reply@github.com"
