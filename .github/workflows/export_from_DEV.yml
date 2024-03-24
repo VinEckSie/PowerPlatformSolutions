@@ -33,15 +33,6 @@ jobs:
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.DEVSECRET }}
         tenant-id: ${{env.TENANT_ID}}
-
-    - name: check-solution action
-      uses: microsoft/powerplatform-actions/check-solution@v0
-      with:
-        environment-url: ${{env.ENVIRONMENT_URL}}
-        app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.DEVSECRET }}
-        tenant-id: ${{env.TENANT_ID}}
-        path: ${{ env.SOLUTION_NAME }}
         
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@v0
@@ -52,6 +43,15 @@ jobs:
         tenant-id: ${{env.TENANT_ID}}
         solution-name: ${{ env.SOLUTION_NAME }}
         solution-output-file: ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
+
+    - name: check-solution action
+      uses: microsoft/powerplatform-actions/check-solution@v0
+      with:
+        environment-url: ${{env.ENVIRONMENT_URL}}
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.DEVSECRET }}
+        tenant-id: ${{env.TENANT_ID}}
+        path: ${{ env.SOLUTION_EXPORTED_FOLDER}}/${{ env.SOLUTION_NAME }}.zip
 
     - name: unpack-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@v0
