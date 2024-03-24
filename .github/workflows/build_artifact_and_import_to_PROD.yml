@@ -87,7 +87,7 @@ jobs:
         publish-changes: true
 
     - name: 'Increase the package version'
-      uses: microsoft/powerplatform-actions/set-online-solution-version@v0
+      uses: microsoft/powerplatform-actions/set-online-solution-version@v0      
       with:
         environment-url: ${{inputs.BUILD_ENVIRONMENT_URL}}
         name: PocketInvest
