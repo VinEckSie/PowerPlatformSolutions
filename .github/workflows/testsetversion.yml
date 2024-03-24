@@ -25,7 +25,7 @@ jobs:
         lfs: true
 
     - name: Power Platform Set Online Solution Version
-      uses: microsoft/powerplatform-actions/set-online-solution-version@v0
+      uses: microsoft/powerplatform-actions/set-online-solution-version@v1.4.0
       with:
         environment-url: ${{env.ENVIRONMENT_URL}}
         app-id: ${{env.CLIENT_ID}}
