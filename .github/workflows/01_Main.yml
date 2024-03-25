@@ -1,4 +1,4 @@
-name: 01_CICD
+name: 01_Main
 
 on:
   workflow_dispatch:
