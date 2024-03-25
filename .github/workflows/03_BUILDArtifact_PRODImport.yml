@@ -1,4 +1,4 @@
-name: build_artifact_and_import_to_PROD
+name: 03_BUILDArtifact_PRODImport
 # Reusable workflow
 # convert solution to managed (using a build PowerPlatform environment for the conversion)
 # upload the solution to the GitHub artifacts and deploy to the PROD environment
