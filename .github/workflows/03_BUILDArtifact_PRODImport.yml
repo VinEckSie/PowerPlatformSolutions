@@ -30,6 +30,13 @@ on:
         description: 'The PROD tenant id'
         type: string
         required: true
+    secrets:
+      BUILDSECRET:
+        description: 'The BUILD Secret'
+        required: true
+      PRODSECRET:
+        description: 'The PROD Secret'
+        required: true
 
 jobs:
   convert-to-managed:
