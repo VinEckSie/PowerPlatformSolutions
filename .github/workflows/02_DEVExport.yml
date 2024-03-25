@@ -5,7 +5,11 @@ name: 02_DEVExport
 on:
   workflow_dispatch:
   workflow_call:
-
+    inputs: 
+      DEVSECRET:
+        description: 'The solution name.'
+        type: string
+        required: true 
 
 env:
   DEV_ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
@@ -30,7 +34,7 @@ jobs:
       with:
         environment-url: ${{env.DEV_ENVIRONMENT_URL}}
         app-id: ${{env.DEV_CLIENT_ID}}
-        client-secret: ${{ secrets.DEVSECRET }}
+        client-secret: ${{ inputs.DEVSECRET }}
         tenant-id: ${{env.DEV_TENANT_ID}}
 
     - name: Install PAC
@@ -43,7 +47,7 @@ jobs:
       with:
         environment-url: ${{env.DEV_ENVIRONMENT_URL}}
         app-id: ${{env.DEV_CLIENT_ID}}
-        client-secret: ${{ secrets.DEVSECRET }}
+        client-secret: ${{ inputs.DEVSECRET }}
         tenant-id: ${{env.DEV_TENANT_ID}}
         name: PocketInvest
         version: ${{github.event.release.tag_name}}
@@ -53,7 +57,7 @@ jobs:
       with:
         environment-url: ${{env.DEV_ENVIRONMENT_URL}}
         app-id: ${{env.DEV_CLIENT_ID}}
-        client-secret: ${{ secrets.DEVSECRET }}
+        client-secret: ${{ inputs.DEVSECRET }}
         tenant-id: ${{env.DEV_TENANT_ID}}
         solution-name: ${{ env.SOLUTION_NAME }}
         solution-output-file: out/exported/${{ env.SOLUTION_NAME }}.zip
@@ -63,7 +67,7 @@ jobs:
       with:
         environment-url: ${{env.DEV_ENVIRONMENT_URL}}
         app-id: ${{env.DEV_CLIENT_ID}}
-        client-secret: ${{ secrets.DEVSECRET }}
+        client-secret: ${{ inputs.DEVSECRET }}
         tenant-id: ${{env.DEV_TENANT_ID}}
         path: out/exported/${{ env.SOLUTION_NAME }}.zip
 
