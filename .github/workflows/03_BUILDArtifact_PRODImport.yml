@@ -6,18 +6,6 @@ on:
         description: 'The solution name.'
         type: string
         default: PocketInvest       
-      solution_shipping_folder:
-        description: 'folder name for staging the exported solution *do not change*'        
-        type: string
-        default: out/ship/
-      solution_outbound_folder:
-        description: 'staging the unpacked solution folder before check-in *do not change*'
-        type: string
-        default: out/solutions/
-      solution_release_folder:
-       description: 'folder where the released binaries are going to be hosted *do not change*'
-       type: string
-       default: out/release
       BUILD_ENVIRONMENT_URL:
         description: 'Build environment url.'
         type: string
@@ -27,19 +15,19 @@ on:
         type: string
         required: true
       BUILD_CLIENT_ID: 
-        description: 'The client id'
+        description: 'The BUILD client id'
         type: string
         required: true
       BUILD_TENANT_ID: 
-        description: 'The tenant id'
+        description: 'The BUILD tenant id'
         type: string
         required: true
       PROD_CLIENT_ID: 
-        description: 'The client id'
+        description: 'The PROD client id'
         type: string
         required: true
       PROD_TENANT_ID: 
-        description: 'The tenant id'
+        description: 'The PROD tenant id'
         type: string
         required: true
 
@@ -58,7 +46,7 @@ jobs:
       uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
         solution-folder: ${{ inputs.solution_name }}
-        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
+        solution-file: out/solutions/${{ inputs.solution_name }}.zip
         solution-type: Unmanaged
 
     - name: Import solution as unmanaged to build env
@@ -68,7 +56,7 @@ jobs:
         app-id: ${{inputs.BUILD_CLIENT_ID}}
         client-secret: ${{ secrets.BUILDSECRET }}
         tenant-id: ${{inputs.BUILD_TENANT_ID}}
-        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
+        solution-file: out/solutions/${{ inputs.solution_name }}.zip
         force-overwrite: true
         publish-changes: true
 
@@ -81,13 +69,13 @@ jobs:
         #tenant-id: ${{inputs.BUILD_TENANT_ID}}
         solution-name: ${{ inputs.solution_name }}
         managed: true
-        solution-output-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
+        solution-output-file: out/ship/${{ inputs.solution_name }}_managed.zip
 
     - name: Upload the ready to ship solution to GH artifact store
       uses: actions/upload-artifact@v2
       with:
         name: managedSolutions
-        path: ${{ inputs.solution_shipping_folder}}/
+        path: out/ship/
 
   release-to-staging:
     needs: [ convert-to-managed ]
@@ -104,7 +92,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: managedSolutions
-        path: ${{ inputs.solution_release_folder}}
+        path: out/release
     - name: Import solution to prod env
       uses: microsoft/powerplatform-actions/import-solution@v0
       with:
@@ -112,6 +100,6 @@ jobs:
         app-id: ${{inputs.PROD_CLIENT_ID}}
         client-secret: ${{ secrets.PRODSECRET }}
         tenant-id: ${{inputs.PROD_TENANT_ID}}
-        solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip
+        solution-file: out/release${{ inputs.solution_name }}_managed.zip
         force-overwrite: true
         publish-changes: true
