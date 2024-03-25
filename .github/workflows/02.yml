@@ -40,6 +40,21 @@ jobs:
         app-id: ${{env.DEV_CLIENT_ID}}
         client-secret: ${{ secrets.DEVSECRET }}
         tenant-id: ${{env.DEV_TENANT_ID}}
+
+    - name: Install PAC
+      if: github.event_name == 'release'
+      uses: microsoft/powerplatform-actions/actions-install@v1.1.0
+    
+    - name: Power Platform Set Online Solution Version
+      if: github.event_name == 'release'
+      uses: microsoft/powerplatform-actions/set-online-solution-version@v1.1.0
+      with:
+        #environment-url: ${{env.ENVIRONMENT_URL}}
+        #app-id: ${{env.CLIENT_ID}}
+        #client-secret: ${{ secrets.DEVSECRET }}
+        #tenant-id: ${{env.TENANT_ID}}
+        name: PocketInvest
+        version: ${{github.event.release.tag_name}}
         
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@v0
