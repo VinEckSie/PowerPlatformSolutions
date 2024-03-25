@@ -5,8 +5,8 @@ name: Release action
 on:
   workflow_dispatch:
     
-  release:
-    types: [created]    
+  #release:
+  #  types: [created]    
 permissions:
   contents: write
 jobs:
