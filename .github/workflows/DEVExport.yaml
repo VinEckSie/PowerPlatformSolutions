@@ -1,4 +1,4 @@
-name: export_from_DEV
+name: DEVExport
 # Export solution from DEV environment
 #  unpack it and prepare, commit and push
 
