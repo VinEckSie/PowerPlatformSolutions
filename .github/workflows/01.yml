@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   DEVExport:
-    uses: ./.github/workflows/02yml.yml
+    uses: ./.github/workflows/02.yml
     with:
       SOLUTION_NAME: PocketInvest
       DEV_ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
