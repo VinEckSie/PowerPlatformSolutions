@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  DEVExport:
+  CallDevWF:
     uses: ./.github/workflows/02.yml
     with:
       SOLUTION_NAME: PocketInvest
