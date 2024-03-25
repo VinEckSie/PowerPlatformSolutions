@@ -1,6 +1,5 @@
 name: 02_DEVExport
 # Export solution from DEV environment
-#  unpack it and prepare, commit and push
 
 on:
   workflow_dispatch:
@@ -11,20 +10,20 @@ on:
         type: string
         required: true
       DEV_ENVIRONMENT_URL:
-        description: 'The solution name.'
+        description: 'The DEV environment url.'
         type: string
         required: true
       DEV_CLIENT_ID:
-        description: 'The solution name.'
+        description: 'The DEV environment client id.'
         type: string
         required: true
       DEV_TENANT_ID:
-        description: 'The solution name.'
+        description: 'The DEV environment tenant id.'
         type: string
         required: true 
     secrets:
       DEVSECRET:
-        description: 'A token passed from the caller workflow'
+        description: 'The DEV Secret'
         required: true
 
 permissions:
@@ -41,7 +40,7 @@ jobs:
         lfs: true
 
     - name: who-am-i action
-      uses: microsoft/powerplatform-actions/who-am-i@v0
+      uses: microsoft/powerplatform-actions/who-am-i@v1.4.0
       with:
         environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
         app-id: ${{inputs.DEV_CLIENT_ID}}
@@ -64,7 +63,7 @@ jobs:
         version: ${{github.event.release.tag_name}}
         
     - name: export-solution action
-      uses: microsoft/powerplatform-actions/export-solution@v0
+      uses: microsoft/powerplatform-actions/export-solution@v1.4.0
       with:
         environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
         app-id: ${{inputs.DEV_CLIENT_ID}}
@@ -74,7 +73,7 @@ jobs:
         solution-output-file: out/exported/${{ inputs.SOLUTION_NAME }}.zip
 
     - name: check-solution action
-      uses: microsoft/powerplatform-actions/check-solution@v0
+      uses: microsoft/powerplatform-actions/check-solution@v1.4.0
       with:
         environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
         app-id: ${{inputs.DEV_CLIENT_ID}}
@@ -84,25 +83,12 @@ jobs:
 
     - name: unpack-solution action
       if: ${{ success() }}
-      uses: microsoft/powerplatform-actions/unpack-solution@v0
+      uses: microsoft/powerplatform-actions/unpack-solution@v1.4.0
       with:
         solution-file: out/exported/${{ inputs.SOLUTION_NAME }}.zip
         solution-folder: ${{ inputs.SOLUTION_NAME }}
         solution-type: 'Unmanaged'
         overwrite-files: true
-        
-    #- name: Commit changes
-     # if: ${{ success() }}
-     #run: |
-      #  Remove-Item -Path "out/exported/${{ inputs.SOLUTION_NAME }}.zip" -Recurse -Force
-      #  git config --global core.autocrlf input
-      #  git config --global user.email "no-reply@github.com"
-      #  git config --global user.name "GitHub Actions"
-        #git checkout main
-        #git add --all 
-      #  git commit -m "Updates from the dev environment"
-      #  git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-      #  git push origin main
 
     - name: Git Fetch and Commit 
       run: |
