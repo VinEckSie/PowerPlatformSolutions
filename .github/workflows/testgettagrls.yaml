@@ -26,13 +26,14 @@ jobs:
     - uses: actions/checkout@v3
       with:
         lfs: true
-
-    - name: Extract version from tag
-      run: echo "VERSION=$(echo ${GITHUB_REF#refs/tags/})" >> $GITHUB_ENV
         
     - name: Install PAC
       uses: microsoft/powerplatform-actions/actions-install@v1.1.0
 
+    - name: Extract version from tag
+      id: extract_version
+      run: echo "::set-output name=VERSION::$(echo ${GITHUB_REF#refs/tags/})"
+    
     - name: Power Platform Set Online Solution Version
       uses: microsoft/powerplatform-actions/set-online-solution-version@v1.1.0
       with:
@@ -41,4 +42,4 @@ jobs:
         client-secret: ${{ secrets.DEVSECRET }}
         tenant-id: ${{env.TENANT_ID}}
         name: PocketInvest
-        version: $VERSION
+        version: ${{ steps.extract_version.outputs.VERSION }}
