@@ -49,6 +49,10 @@ jobs:
       with:
         lfs: true
 
+    - name: Install PAC
+      if: github.event_name == 'release'
+      uses: microsoft/powerplatform-actions/actions-install@v1.1.0
+
     - name: Pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v1.4.0
       with:
