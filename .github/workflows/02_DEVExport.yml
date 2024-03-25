@@ -91,16 +91,26 @@ jobs:
         solution-type: 'Unmanaged'
         overwrite-files: true
         
-    - name: Commit changes
-      if: ${{ success() }}
-      run: |
-        Remove-Item -Path "out/exported/${{ inputs.SOLUTION_NAME }}.zip" -Recurse -Force
-        git config --global core.autocrlf input
-        git config --global user.email "no-reply@github.com"
-        git config --global user.name "GitHub Actions"
+    #- name: Commit changes
+     # if: ${{ success() }}
+     #run: |
+      #  Remove-Item -Path "out/exported/${{ inputs.SOLUTION_NAME }}.zip" -Recurse -Force
+      #  git config --global core.autocrlf input
+      #  git config --global user.email "no-reply@github.com"
+      #  git config --global user.name "GitHub Actions"
         #git checkout main
         #git add --all 
+      #  git commit -m "Updates from the dev environment"
+      #  git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+      #  git push origin main
+
+    - name: Git Fetch and Commit 
+      run: |
+        git fetch --all  
+        git config --global user.email "no-reply@github.com"
+        git config --global user.name "GitHub Actions"
+        git checkout main
+        git add --all 
         git commit -m "Updates from the dev environment"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        git push origin main
-
+        git push
