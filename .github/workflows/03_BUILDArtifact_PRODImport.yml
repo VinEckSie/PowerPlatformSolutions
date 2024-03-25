@@ -1,13 +1,7 @@
 name: 03_BUILDArtifact_PRODImport
-# Reusable workflow
-# convert solution to managed (using a build PowerPlatform environment for the conversion)
-# upload the solution to the GitHub artifacts and deploy to the PROD environment
 on:
   workflow_call:
     inputs: 
-      #Do Not change these values
-      #Values are set by the caller
-      #caller sample: release-action-call.ymnl
       SOLUTION_NAME:
         description: 'The solution name.'
         type: string
@@ -52,7 +46,6 @@ on:
 jobs:
   convert-to-managed:
     runs-on: windows-latest
-    # or you can say runs-on: ubuntu-latest
     env:
       RUNNER_DEBUG: 1
 
@@ -78,16 +71,6 @@ jobs:
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
         force-overwrite: true
         publish-changes: true
-
-    - name: Power Platform Set Online Solution Version
-      uses: microsoft/powerplatform-actions/set-online-solution-version@v0      
-      with:
-        environment-url: ${{inputs.BUILD_ENVIRONMENT_URL}}
-        app-id: ${{inputs.BUILD_CLIENT_ID}}
-        client-secret: ${{ secrets.BUILDSECRET }}
-        tenant-id: ${{inputs.BUILD_TENANT_ID}}
-        name: PocketInvest
-        version: 1.0.0.11
 
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v0
