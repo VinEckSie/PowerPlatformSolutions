@@ -39,9 +39,9 @@ jobs:
       with:
         lfs: true
 
-    #- name: Install PAC
-      #if: github.event_name == 'release'
-      #uses: microsoft/powerplatform-actions/actions-install@v1.1.0
+    - name: Install PAC
+      if: github.event_name == 'release'
+      uses: microsoft/powerplatform-actions/actions-install@v1.1.0
 
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v1.4.0
