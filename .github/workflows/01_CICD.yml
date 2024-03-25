@@ -1,4 +1,4 @@
-name: 01yml
+name: 01_CICD
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   Dev_Export:
-    uses: ./.github/workflows/02.yml
+    uses: ./.github/workflows/02_DEVExport.yml
     with:
       SOLUTION_NAME: PocketInvest
       DEV_ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
@@ -22,7 +22,7 @@ jobs:
   Build_Prod_Import:
     if: github.event_name == 'release'
     needs: [Dev_Export] # This ensures that Build_Prod_Import runs after Dev_Export
-    uses: ./.github/workflows/build_artifact_and_import_to_PROD.yml
+    uses: ./.github/workflows/03_BUILDArtifact_PRODImport.yml
     with:
       SOLUTION_NAME: PocketInvest
       BUILD_ENVIRONMENT_URL: https://pl400-build.crm16.dynamics.com/
