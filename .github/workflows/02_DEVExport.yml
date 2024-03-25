@@ -1,24 +1,17 @@
 name: 02_DEVExport
 # Export solution from DEV environment
+#  unpack it and prepare, commit and push
+
 on:
-  workflow_call:
-    inputs: 
-     SOLUTION_NAME:
-        description: 'The solution name.'
-        type: string
-        required: true
-     DEV_ENVIRONMENT_URL:
-        description: 'The DEV environment url.'
-        type: string
-        required: true
-     DEV_CLIENT_ID:
-        description: 'The DEV Client Id.'
-        type: string
-        required: true
-     DEV_TENANT_ID:
-        description: 'The DEV Tenant Id.'
-        type: string
-        required: true
+  workflow_dispatch:
+  schedule:
+    - cron: '00 21 * * *'
+
+env:
+  DEV_ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
+  DEV_CLIENT_ID: '20e6d751-0038-4647-ab6e-2ecc5286aec7'
+  DEV_TENANT_ID: '189fc259-0274-4dfb-b187-e2b6dcaf0e88'
+  SOLUTION_NAME: PocketInvest
 permissions:
   contents: write
 jobs:
@@ -35,10 +28,10 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
-        environment-url: ${{inputs.ENVIRONMENT_URL}}
-        app-id: ${{inputs.CLIENT_ID}}
+        environment-url: ${{env.DEV_ENVIRONMENT_URL}}
+        app-id: ${{env.DEV_CLIENT_ID}}
         client-secret: ${{ secrets.DEVSECRET }}
-        tenant-id: ${{inputs.TENANT_ID}}
+        tenant-id: ${{env.DEV_TENANT_ID}}
 
     - name: Install PAC
       if: github.event_name == 'release'
