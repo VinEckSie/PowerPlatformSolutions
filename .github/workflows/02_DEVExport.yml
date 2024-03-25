@@ -19,10 +19,6 @@ on:
         description: 'The DEV Tenant Id.'
         type: string
         required: true
-     DEVSECRETINPUT:
-        description: 'The DEV Tenant Id.'
-        type: string
-        required: true
   
 jobs:
   export-from-dev:
@@ -42,7 +38,6 @@ jobs:
        echo "devsec ${{ secrets.DEVSECRET }}"
        echo "psn ${{ secrets.POWERPLATFORMSPN }}"
        echo "tenant ${{ inputs.DEV_TENANT_ID }}"
-       echo "secret input ${{ inputs.DEVSECRETINPUT }}"
 
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
