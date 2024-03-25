@@ -1,4 +1,4 @@
-name: 02_Export solution from DEV environment
+name: 02_DEVExport
 # Export solution from DEV environment
 on:
   workflow_call:
