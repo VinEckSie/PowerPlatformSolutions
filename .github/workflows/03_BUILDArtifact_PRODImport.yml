@@ -113,6 +113,6 @@ jobs:
         app-id: ${{inputs.PROD_CLIENT_ID}}
         client-secret: ${{ secrets.PRODSECRET }}
         tenant-id: ${{inputs.PROD_TENANT_ID}}
-        solution-file: out/release${{ inputs.SOLUTION_NAME }}_managed.zip
+        solution-file: out/release/${{ inputs.SOLUTION_NAME }}_managed.zip
         force-overwrite: true
         publish-changes: true
