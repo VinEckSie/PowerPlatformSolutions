@@ -11,6 +11,14 @@ permissions:
   contents: write
 
 jobs:
+  Print_variable_value:
+      uses: |
+       echo "environment is ${{inputs.DEV_ENVIRONMENT_URL }}"
+       echo "app is ${{ inputs.DEV_CLIENT_ID }}"
+       echo "devsec ${{ secrets.DEVSECRET }}"
+       echo "psn ${{ secrets.POWERPLATFORMSPN }}"
+       echo "tenant ${{ inputs.DEV_TENANT_ID }}"
+       
   Dev_Export:
     uses: ./.github/workflows/02_DEVExport.yml
     with:
