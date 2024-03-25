@@ -75,9 +75,9 @@ jobs:
       uses: microsoft/powerplatform-actions/export-solution@v1.4.0
       with:
         environment-url: ${{inputs.BUILD_ENVIRONMENT_URL}}
-        #app-id: ${{inputs.BUILD_CLIENT_ID}}
-        #client-secret: ${{ secrets.BUILDSECRET }} 
-        #tenant-id: ${{inputs.BUILD_TENANT_ID}}
+        app-id: ${{inputs.BUILD_CLIENT_ID}}
+        client-secret: ${{ secrets.BUILDSECRET }} 
+        tenant-id: ${{inputs.BUILD_TENANT_ID}}
         solution-name: ${{ inputs.SOLUTION_NAME }}
         managed: true
         solution-output-file: out/ship/${{ inputs.SOLUTION_NAME }}_managed.zip
