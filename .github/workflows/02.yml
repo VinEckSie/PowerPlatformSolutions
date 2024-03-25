@@ -40,7 +40,7 @@ jobs:
       with:
         environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
         app-id: ${{inputs.DEV_CLIENT_ID}}
-        client-secret: ${{ inputs.DEVSECRET }}
+        client-secret: ${{ secrets.DEVSECRET }}
         tenant-id: ${{inputs.DEV_TENANT_ID}}
 
     - name: Install PAC
@@ -53,7 +53,7 @@ jobs:
       with:
         environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
         app-id: ${{inputs.DEV_CLIENT_ID}}
-        client-secret: ${{ inputs.DEVSECRET }}
+        client-secret: ${{ secrets.DEVSECRET }}
         tenant-id: ${{inputs.DEV_TENANT_ID}}
         name: PocketInvest
         version: ${{github.event.release.tag_name}}
@@ -63,7 +63,7 @@ jobs:
       with:
         environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
         app-id: ${{inputs.DEV_CLIENT_ID}}
-        client-secret: ${{ inputs.DEVSECRET }}
+        client-secret: ${{ secrets.DEVSECRET }}
         tenant-id: ${{inputs.DEV_TENANT_ID}}
         solution-name: ${{ inputs.SOLUTION_NAME }}
         solution-output-file: out/exported/${{ inputs.SOLUTION_NAME }}.zip
@@ -73,7 +73,7 @@ jobs:
       with:
         environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
         app-id: ${{inputs.DEV_CLIENT_ID}}
-        client-secret: ${{ inputs.DEVSECRET }}
+        client-secret: ${{ secrets.DEVSECRET }}
         tenant-id: ${{inputs.DEV_TENANT_ID}}
         path: out/exported/${{ inputs.SOLUTION_NAME }}.zip
 
