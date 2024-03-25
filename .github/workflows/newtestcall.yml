@@ -1,4 +1,4 @@
-name: Release action
+name: New Test Call
 on:
   workflow_dispatch:  
 permissions:
