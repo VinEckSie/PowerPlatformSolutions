@@ -21,6 +21,7 @@ jobs:
     secrets:
       DEVSECRET: ${{ secrets.DEVSECRET }}
   Build_Prod_Import:
+    if: github.event_name == 'release'
     uses: ./.github/workflows/build_artifact_and_import_to_PROD.yml
     with:
       SOLUTION_NAME: PocketInvest
