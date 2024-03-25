@@ -16,12 +16,34 @@ env:
 permissions:
   contents: write
 jobs:
-  export-from-dev:
-    runs-on: windows-latest
-    env:
-      RUNNER_DEBUG: 1
+#  export-from-dev:
+#    runs-on: windows-latest
+#    env:
+#      RUNNER_DEBUG: 1
 
-    steps:
+#    steps:
+#    - uses: actions/checkout@v3
+ #     with:
+#        lfs: true
+
+#    - name: who-am-i action
+#      uses: microsoft/powerplatform-actions/who-am-i@v0
+ #     with:
+ #       environment-url: ${{env.DEV_ENVIRONMENT_URL}}
+ #       app-id: ${{env.DEV_CLIENT_ID}}
+ #       client-secret: ${{ secrets.DEVSECRET }}
+ #       tenant-id: ${{env.DEV_TENANT_ID}}
+
+ export-from-dev:
+  runs-on: windows-latest
+  env:
+   RUNNER_DEBUG: 1
+   DEV_ENVIRONMENT_URL: ${{ env.DEV_ENVIRONMENT_URL }}
+   DEV_CLIENT_ID: ${{ env.DEV_CLIENT_ID }}
+   DEV_TENANT_ID: ${{ env.DEV_TENANT_ID }}
+   DEVSECRET: ${{ secrets.DEVSECRET }}
+
+  steps:
     - uses: actions/checkout@v3
       with:
         lfs: true
@@ -29,10 +51,10 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
-        environment-url: ${{env.DEV_ENVIRONMENT_URL}}
-        app-id: ${{env.DEV_CLIENT_ID}}
-        client-secret: ${{ secrets.DEVSECRET }}
-        tenant-id: ${{env.DEV_TENANT_ID}}
+       environment-url: ${{ env.DEV_ENVIRONMENT_URL }}
+       app-id: ${{ env.DEV_CLIENT_ID }}
+       client-secret: ${{ secrets.DEVSECRET }}
+       tenant-id: ${{ env.DEV_TENANT_ID }}
 
     - name: Install PAC
       if: github.event_name == 'release'
