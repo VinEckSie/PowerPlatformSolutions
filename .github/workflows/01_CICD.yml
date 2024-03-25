@@ -11,6 +11,11 @@ permissions:
   contents: write
 
 jobs:
+  Install-PAC:
+    runs-on: windows-latest 
+    steps:
+      - name: Install PAC
+        uses: microsoft/powerplatform-actions/actions-install@v1
   Dev_Export:
     uses: ./.github/workflows/02_DEVExport.yml
     with:
