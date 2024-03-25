@@ -11,14 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  Install-PAC:
-    runs-on: windows-latest 
-    steps:
-      - name: Install PAC
-        if: github.event_name == 'release'
-        uses: microsoft/powerplatform-actions/actions-install@v1.1.0
   Dev_Export:
-    needs: [Install-PAC]
     uses: ./.github/workflows/02_DEVExport.yml
     with:
       SOLUTION_NAME: PocketInvest
