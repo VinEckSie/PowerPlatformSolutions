@@ -38,4 +38,4 @@ jobs:
         client-secret: ${{ secrets.DEVSECRET }}
         tenant-id: ${{env.TENANT_ID}}
         name: PocketInvest
-        version: ${{.event.release.tag_name}}
+        version: ${{github.event.release.tag_name}}
