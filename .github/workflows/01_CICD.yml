@@ -18,6 +18,7 @@ jobs:
         if: github.event_name == 'release'
         uses: microsoft/powerplatform-actions/actions-install@v1.1.0
   Dev_Export:
+    needs: [Install-PAC]
     uses: ./.github/workflows/02_DEVExport.yml
     with:
       SOLUTION_NAME: PocketInvest
@@ -28,7 +29,7 @@ jobs:
       DEVSECRET: ${{ secrets.DEVSECRET }}
   Build_Prod_Import:
     if: github.event_name == 'release'
-    needs: [Dev_Export] # This ensures that Build_Prod_Import runs after Dev_Export
+    needs: [Dev_Export]
     uses: ./.github/workflows/03_BUILDArtifact_PRODImport.yml
     with:
       SOLUTION_NAME: PocketInvest
