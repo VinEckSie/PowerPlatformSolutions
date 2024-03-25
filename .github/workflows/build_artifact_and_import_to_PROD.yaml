@@ -8,7 +8,7 @@ on:
       #Do Not change these values
       #Values are set by the caller
       #caller sample: release-action-call.ymnl
-      solution_name:
+      SOLUTION_NAME:
         description: 'The solution name.'
         type: string
         default: PocketInvest       
