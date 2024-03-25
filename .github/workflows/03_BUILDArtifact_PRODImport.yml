@@ -45,38 +45,38 @@ jobs:
       RUNNER_DEBUG: 1
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         lfs: true
 
     - name: Pack solution
-      uses: microsoft/powerplatform-actions/pack-solution@v0
+      uses: microsoft/powerplatform-actions/pack-solution@v1.4.0
       with:
-        solution-folder: ${{ inputs.solution_name }}
-        solution-file: out/solutions/${{ inputs.solution_name }}.zip
+        solution-folder: ${{ inputs.SOLUTION_NAME }}
+        solution-file: out/solutions/${{ inputs.SOLUTION_NAME }}.zip
         solution-type: Unmanaged
 
     - name: Import solution as unmanaged to build env
-      uses: microsoft/powerplatform-actions/import-solution@v0
+      uses: microsoft/powerplatform-actions/import-solution@v1.4.0
       with:
         environment-url: ${{inputs.BUILD_ENVIRONMENT_URL}}
         app-id: ${{inputs.BUILD_CLIENT_ID}}
         client-secret: ${{ secrets.BUILDSECRET }}
         tenant-id: ${{inputs.BUILD_TENANT_ID}}
-        solution-file: out/solutions/${{ inputs.solution_name }}.zip
+        solution-file: out/solutions/${{ inputs.SOLUTION_NAME }}.zip
         force-overwrite: true
         publish-changes: true
 
     - name: Export solution as managed
-      uses: microsoft/powerplatform-actions/export-solution@v0
+      uses: microsoft/powerplatform-actions/export-solution@v1.4.0
       with:
         environment-url: ${{inputs.BUILD_ENVIRONMENT_URL}}
         #app-id: ${{inputs.BUILD_CLIENT_ID}}
         #client-secret: ${{ secrets.BUILDSECRET }} 
         #tenant-id: ${{inputs.BUILD_TENANT_ID}}
-        solution-name: ${{ inputs.solution_name }}
+        solution-name: ${{ inputs.SOLUTION_NAME }}
         managed: true
-        solution-output-file: out/ship/${{ inputs.solution_name }}_managed.zip
+        solution-output-file: out/ship/${{ inputs.SOLUTION_NAME }}_managed.zip
 
     - name: Upload the ready to ship solution to GH artifact store
       uses: actions/upload-artifact@v2
@@ -101,12 +101,12 @@ jobs:
         name: managedSolutions
         path: out/release
     - name: Import solution to prod env
-      uses: microsoft/powerplatform-actions/import-solution@v0
+      uses: microsoft/powerplatform-actions/import-solution@v1.4.0
       with:
         environment-url: ${{inputs.PRODUCTION_ENVIRONMENT_URL}}
         app-id: ${{inputs.PROD_CLIENT_ID}}
         client-secret: ${{ secrets.PRODSECRET }}
         tenant-id: ${{inputs.PROD_TENANT_ID}}
-        solution-file: out/release${{ inputs.solution_name }}_managed.zip
+        solution-file: out/release${{ inputs.SOLUTION_NAME }}_managed.zip
         force-overwrite: true
         publish-changes: true
