@@ -19,10 +19,6 @@ on:
         description: 'The DEV Tenant Id.'
         type: string
         required: true
-    secrets:
-      DEVSECRET:
-        description: 'The secret value for authentication using SPN'
-        required: true
   
 jobs:
   export-from-dev:
