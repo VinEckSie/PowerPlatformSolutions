@@ -15,7 +15,8 @@ jobs:
     runs-on: windows-latest 
     steps:
       - name: Install PAC
-        uses: microsoft/powerplatform-actions/actions-install@v1
+        if: github.event_name == 'release'
+        uses: microsoft/powerplatform-actions/actions-install@v1.1.0
   Dev_Export:
     uses: ./.github/workflows/02_DEVExport.yml
     with:
@@ -25,7 +26,6 @@ jobs:
       DEV_TENANT_ID: '189fc259-0274-4dfb-b187-e2b6dcaf0e88'
     secrets:
       DEVSECRET: ${{ secrets.DEVSECRET }}
-      
   Build_Prod_Import:
     if: github.event_name == 'release'
     needs: [Dev_Export] # This ensures that Build_Prod_Import runs after Dev_Export
