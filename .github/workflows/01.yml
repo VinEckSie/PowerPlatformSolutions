@@ -23,7 +23,7 @@ jobs:
   Build_Prod_Import:
     uses: ./.github/workflows/build_artifact_and_import_to_PROD.yml
     with:
-      solution_name: PocketInvest
+      SOLUTION_NAME: PocketInvest
       BUILD_ENVIRONMENT_URL: https://pl400-build.crm16.dynamics.com/
       PRODUCTION_ENVIRONMENT_URL: https://pl400-prod.crm16.dynamics.com/
       BUILD_CLIENT_ID: b6fe6c58-23dd-4dcf-b399-6ff32ed654d0
