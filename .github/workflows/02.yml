@@ -71,10 +71,10 @@ jobs:
     - name: check-solution action
       uses: microsoft/powerplatform-actions/check-solution@v0
       with:
-        #environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
-        #app-id: ${{inputs.DEV_CLIENT_ID}}
-        #client-secret: ${{ secrets.DEVSECRET }}
-        #tenant-id: ${{inputs.DEV_TENANT_ID}}
+        environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
+        app-id: ${{inputs.DEV_CLIENT_ID}}
+        client-secret: ${{ secrets.DEVSECRET }}
+        tenant-id: ${{inputs.DEV_TENANT_ID}}
         path: out/exported/${{ inputs.SOLUTION_NAME }}.zip
 
     - name: unpack-solution action
