@@ -11,7 +11,7 @@ permissions:
   contents: write
 jobs:
   Release-solution-PocketInvest:
-    uses: ./.github/workflows/build_artifact_and_import_to_PROD.yml
+    uses: ./.github/workflows/03_BUILDArtifact_PRODImport.yml
     with:
       #You can specify the solution name here
       solution_name: PocketInvest
