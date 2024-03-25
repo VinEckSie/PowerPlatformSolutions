@@ -5,10 +5,27 @@ name: 02_DEVExport
 on:
   workflow_dispatch:
   workflow_call:
+    inputs: 
+      SOLUTION_NAME:
+        description: 'The solution name.'
+        type: string
+        required: true
+      SOLUTION_NAME2:
+        description: 'The solution name.'
+        type: string
+        required: true
+      SOLUTION_NAME3:
+        description: 'The solution name.'
+        type: string
+        required: true
+      SOLUTION_NAME4:
+        description: 'The solution name.'
+        type: string
+        required: true 
     secrets:
       DEVSECRET:
         description: 'A token passed from the caller workflow'
-        required: false
+        required: true
 
 env:
   DEV_ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
