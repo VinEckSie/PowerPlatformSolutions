@@ -50,7 +50,6 @@ jobs:
         lfs: true
 
     - name: Install PAC
-      if: github.event_name == 'release'
       uses: microsoft/powerplatform-actions/actions-install@v1.1.0
 
     - name: Pack solution
@@ -95,9 +94,12 @@ jobs:
       RUNNER_DEBUG: 1
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         lfs: true
+
+    - name: Install PAC
+      uses: microsoft/powerplatform-actions/actions-install@v1.1.0
 
     - name: Fetch the ready to ship solution from GH artifact store
       uses: actions/download-artifact@v2
