@@ -51,10 +51,10 @@ jobs:
       if: github.event_name == 'release'
       uses: microsoft/powerplatform-actions/set-online-solution-version@v1.1.0
       with:
-        #environment-url: ${{inputs.ENVIRONMENT_URL}}
-        #app-id: ${{inputs.CLIENT_ID}}
-        #client-secret: ${{ secrets.DEVSECRET }}
-        #tenant-id: ${{inputs.TENANT_ID}}
+        environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
+        app-id: ${{inputs.DEV_CLIENT_ID}}
+        client-secret: ${{ secrets.DEVSECRET }}
+        tenant-id: ${{inputs.DEV_TENANT_ID}}
         name: PocketInvest
         version: ${{github.event.release.tag_name}}
         
