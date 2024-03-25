@@ -12,13 +12,7 @@ permissions:
 
 jobs:
   Dev_Export:
-    runs-on: windows-latest
-    steps:
-      - name: Check out
-        uses: actions/checkout@v4
-        
-      - name: Dev_Export
-        uses: ./github/workflows/02.yml
+        uses: ././github/workflows/02.yml
         with:
           SOLUTION_NAME: PocketInvest
           DEV_ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
