@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
   workflow_call:
 
-env:
-  ${{ include ./config.yml }}
+
 #env:
   #DEV_ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
   #DEV_CLIENT_ID: '20e6d751-0038-4647-ab6e-2ecc5286aec7'
