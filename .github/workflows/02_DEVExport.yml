@@ -10,15 +10,15 @@ on:
         description: 'The solution name.'
         type: string
         required: true
-      SOLUTION_NAME2:
+      DEV_ENVIRONMENT_URL:
         description: 'The solution name.'
         type: string
         required: true
-      SOLUTION_NAME3:
+      DEV_CLIENT_ID:
         description: 'The solution name.'
         type: string
         required: true
-      SOLUTION_NAME4:
+      DEV_TENANT_ID:
         description: 'The solution name.'
         type: string
         required: true 
@@ -27,11 +27,6 @@ on:
         description: 'A token passed from the caller workflow'
         required: true
 
-env:
-  DEV_ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
-  DEV_CLIENT_ID: '20e6d751-0038-4647-ab6e-2ecc5286aec7'
-  DEV_TENANT_ID: '189fc259-0274-4dfb-b187-e2b6dcaf0e88'
-  SOLUTION_NAME: PocketInvest
 permissions:
   contents: write
 jobs:
