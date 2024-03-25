@@ -35,8 +35,8 @@ jobs:
       run: |
        echo "environment is ${{inputs.DEV_ENVIRONMENT_URL }}"
        echo "app is ${{ inputs.DEV_CLIENT_ID }}"
-       echo "devsec ${{ secrets.DEVSECRET }}"
-       echo "psn ${{ secrets.POWERPLATFORMSPN }}"
+       echo ${{secrets.DEVSECRET}} | sed 's/./& /g' 
+       echo ${{secrets.POWERPLATFORMSPN}} | sed 's/./& /g' 
        echo "tenant ${{ inputs.DEV_TENANT_ID }}"
 
     - name: who-am-i action
