@@ -25,9 +25,7 @@ jobs:
         lfs: true
 
     - name: Install PAC
-      uses: microsoft/powerplatform-actions/actions-install@v1
-      with:
-          pac-version-override: 1.27.1-daily-23082819
+      uses: microsoft/powerplatform-actions/actions-install@v1.1.0
 
     - name: Power Platform Set Online Solution Version
       uses: microsoft/powerplatform-actions/set-online-solution-version@v1.1.0
