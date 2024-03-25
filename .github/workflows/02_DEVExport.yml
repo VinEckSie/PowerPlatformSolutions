@@ -106,6 +106,7 @@ jobs:
 
     - name: Git Fetch and Commit 
       run: |
+        Remove-Item -Path "out/exported/${{ inputs.SOLUTION_NAME }}.zip" -Recurse -Force
         git fetch --all  
         git config --global user.email "no-reply@github.com"
         git config --global user.name "GitHub Actions"
