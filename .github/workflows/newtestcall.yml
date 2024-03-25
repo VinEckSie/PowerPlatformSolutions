@@ -6,6 +6,8 @@ permissions:
 jobs:
   Release-solution-PocketInvest:
     uses: ./.github/workflows/02_DEVExport.yml
+    secrets:
+      DEVSECRET: ${{ secrets.DEVSECRET }}
         #env:
       #DEV_ENVIRONMENT_URL: ${{ secrets.DEV_ENVIRONMENT_URL }}
       #DEV_CLIENT_ID: ${{ secrets.DEV_CLIENT_ID }}
