@@ -19,4 +19,4 @@ jobs:
       DEV_CLIENT_ID: '20e6d751-0038-4647-ab6e-2ecc5286aec7'
       DEV_TENANT_ID: '189fc259-0274-4dfb-b187-e2b6dcaf0e88'
     secrets:
-      DEVSECRET: ${{ secrets.BUILDSECRET }}
+      DEVSECRET: ${{ secrets.DEVSECRET }}
