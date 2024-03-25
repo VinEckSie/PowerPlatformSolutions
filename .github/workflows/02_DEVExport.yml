@@ -31,6 +31,13 @@ jobs:
       with:
         lfs: true
 
+    - name: Print variable value
+      run: |
+       echo "environment is ${{inputs.DEV_ENVIRONMENT_URL }}"
+       echo "app is ${{ inputs.DEV_CLIENT_ID }}"
+       echo "client ${{ secrets.DEVSECRET }}"
+       echo "tenant ${{ inputs.DEV_TENANT_ID }}"
+
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
