@@ -40,10 +40,10 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
-        environment-url: ${{env.DEV_ENVIRONMENT_URL}}
-        app-id: ${{env.DEV_CLIENT_ID}}
+        environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
+        app-id: ${{inputs.DEV_CLIENT_ID}}
         client-secret: ${{ secrets.DEVSECRET }}
-        tenant-id: ${{env.DEV_TENANT_ID}}
+        tenant-id: ${{inputs.DEV_TENANT_ID}}
 
     - name: Install PAC
       if: github.event_name == 'release'
@@ -53,45 +53,45 @@ jobs:
       if: github.event_name == 'release'
       uses: microsoft/powerplatform-actions/set-online-solution-version@v1.1.0
       with:
-        #environment-url: ${{env.ENVIRONMENT_URL}}
-        #app-id: ${{env.CLIENT_ID}}
+        #environment-url: ${{inputs.ENVIRONMENT_URL}}
+        #app-id: ${{inputs.CLIENT_ID}}
         #client-secret: ${{ secrets.DEVSECRET }}
-        #tenant-id: ${{env.TENANT_ID}}
+        #tenant-id: ${{inputs.TENANT_ID}}
         name: PocketInvest
         version: ${{github.event.release.tag_name}}
         
     - name: export-solution action
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
-        #environment-url: ${{env.DEV_ENVIRONMENT_URL}}
-        #app-id: ${{env.DEV_CLIENT_ID}}
+        #environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
+        #app-id: ${{inputs.DEV_CLIENT_ID}}
         #client-secret: ${{ secrets.DEVSECRET }}
-        #tenant-id: ${{env.DEV_TENANT_ID}}
-        solution-name: ${{ env.SOLUTION_NAME }}
-        solution-output-file: out/exported/${{ env.SOLUTION_NAME }}.zip
+        #tenant-id: ${{inputs.DEV_TENANT_ID}}
+        solution-name: ${{ inputs.SOLUTION_NAME }}
+        solution-output-file: out/exported/${{ inputs.SOLUTION_NAME }}.zip
 
     - name: check-solution action
       uses: microsoft/powerplatform-actions/check-solution@v0
       with:
-        #environment-url: ${{env.DEV_ENVIRONMENT_URL}}
-        #app-id: ${{env.DEV_CLIENT_ID}}
+        #environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
+        #app-id: ${{inputs.DEV_CLIENT_ID}}
         #client-secret: ${{ secrets.DEVSECRET }}
-        #tenant-id: ${{env.DEV_TENANT_ID}}
-        path: out/exported/${{ env.SOLUTION_NAME }}.zip
+        #tenant-id: ${{inputs.DEV_TENANT_ID}}
+        path: out/exported/${{ inputs.SOLUTION_NAME }}.zip
 
     - name: unpack-solution action
       if: ${{ success() }}
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
-        solution-file: out/exported/${{ env.SOLUTION_NAME }}.zip
-        solution-folder: ${{ env.SOLUTION_NAME }}
+        solution-file: out/exported/${{ inputs.SOLUTION_NAME }}.zip
+        solution-folder: ${{ inputs.SOLUTION_NAME }}
         solution-type: 'Unmanaged'
         overwrite-files: true
         
     - name: Commit changes
       if: ${{ success() }}
       run: |
-        Remove-Item -Path "out/exported/${{ env.SOLUTION_NAME }}.zip" -Recurse -Force
+        Remove-Item -Path "out/exported/${{ inputs.SOLUTION_NAME }}.zip" -Recurse -Force
         git config --global user.email "no-reply@github.com"
         git config --global user.name "GitHub Actions"
         git checkout main
