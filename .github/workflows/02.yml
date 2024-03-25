@@ -24,6 +24,12 @@ on:
         description: 'The secret value for authentication using SPN'
         required: true
 
+env:
+  DEV_ENVIRONMENT_URL: 'https://org859aecd5.crm16.dynamics.com/'
+  DEV_CLIENT_ID: '20e6d751-0038-4647-ab6e-2ecc5286aec7'
+  DEV_TENANT_ID: '189fc259-0274-4dfb-b187-e2b6dcaf0e88'
+  SOLUTION_NAME: PocketInvest
+  
 permissions:
   contents: write
 jobs:
@@ -40,10 +46,10 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
-        environment-url: ${{inputs.DEV_ENVIRONMENT_URL}}
-        app-id: ${{inputs.DEV_CLIENT_ID}}
+        environment-url: ${{env.DEV_ENVIRONMENT_URL}}
+        app-id: ${{env.DEV_CLIENT_ID}}
         client-secret: ${{ secrets.DEVSECRET }}
-        tenant-id: ${{inputs.DEV_TENANT_ID}}
+        tenant-id: ${{env.DEV_TENANT_ID}}
 
     - name: Install PAC
       if: github.event_name == 'release'
