@@ -6,11 +6,11 @@ permissions:
 jobs:
   Release-solution-PocketInvest:
     runs-on: ubuntu-latest
+    env:
+      DEV_ENVIRONMENT_URL: ${{ secrets.DEV_ENVIRONMENT_URL }}
+      DEV_CLIENT_ID: ${{ secrets.DEV_CLIENT_ID }}
+      DEV_TENANT_ID: ${{ secrets.DEV_TENANT_ID }}
+      DEVSECRET: ${{ secrets.DEVSECRET }}
     steps:
       - name: Run 02_DEVExport.yml
         uses: ./.github/workflows/02_DEVExport.yml
-        env:
-          DEV_ENVIRONMENT_URL: ${{ secrets.DEV_ENVIRONMENT_URL }}
-          DEV_CLIENT_ID: ${{ secrets.DEV_CLIENT_ID }}
-          DEV_TENANT_ID: ${{ secrets.DEV_TENANT_ID }}
-          DEVSECRET: ${{ secrets.DEVSECRET }}
