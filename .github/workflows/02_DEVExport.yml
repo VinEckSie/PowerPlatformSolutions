@@ -19,7 +19,8 @@ on:
         description: 'The DEV Tenant Id.'
         type: string
         required: true
-  
+permissions:
+  contents: write
 jobs:
   export-from-dev:
     runs-on: windows-latest
