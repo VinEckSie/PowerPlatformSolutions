@@ -2,8 +2,8 @@ name: 01_CICD
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '5 * * * *'
+  #schedule:
+    #- cron: '5 * * * *'
   release:
     types: [created]    
     
