@@ -48,13 +48,6 @@ on:
         description: 'The tenant id'
         type: string
         required: true
-    secrets:
-      BUILDSECRET:
-        description: 'The secret value for authentication using SPN'
-        required: true
-      PRODSECRET:
-        description: 'The secret value for authentication using SPN'
-        required: true
 
 jobs:
   convert-to-managed:
