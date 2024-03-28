@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.24032.164" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.24033.154" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>PocketInvest</UniqueName>
     <LocalizedNames>
@@ -152,7 +152,7 @@
         <Dependent type="62" schemaName="cr471_PocketInvest" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="SettingDefinition" displayName="AppChannel" solution="msdyn_AppFrameworkInfraExtensions (1.0.0.7)" id.uniquename="AppChannel" />
+        <Required type="SettingDefinition" displayName="AppChannel" solution="msdyn_AppFrameworkInfraExtensions (1.0.0.8)" id.uniquename="AppChannel" />
         <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=cr471_PocketInvest,settingdefinitionid.uniquename=AppChannel" id.parentappmoduleid.uniquename="cr471_PocketInvest" id.settingdefinitionid.uniquename="AppChannel" />
       </MissingDependency>
     </MissingDependencies>
