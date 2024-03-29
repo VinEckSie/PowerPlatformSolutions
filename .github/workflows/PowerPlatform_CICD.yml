@@ -1,4 +1,4 @@
-name: 01_Main
+name: PowerPlatform_CICD
 
 on:
   workflow_dispatch:
