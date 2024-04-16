@@ -738,7 +738,7 @@
           <Type>lookup</Type>
           <Name>cr471_originator</Name>
           <LogicalName>cr471_originator</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
+          <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
@@ -776,7 +776,7 @@
           <Type>lookup</Type>
           <Name>cr471_platform</Name>
           <LogicalName>cr471_platform</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
+          <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
