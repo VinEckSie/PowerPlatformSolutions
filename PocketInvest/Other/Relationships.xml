@@ -5,6 +5,7 @@
   <EntityRelationship Name="business_unit_cr471_platform" />
   <EntityRelationship Name="cr471_Loans_cr471_Originator_cr471_Origin" />
   <EntityRelationship Name="cr471_Loans_cr471_Platform_cr471_Platform" />
+  <EntityRelationship Name="cr471_Transaction_OriginatorId_cr471_Orig" />
   <EntityRelationship Name="lk_cr471_loans_createdby" />
   <EntityRelationship Name="lk_cr471_loans_modifiedby" />
   <EntityRelationship Name="lk_cr471_originator_createdby" />

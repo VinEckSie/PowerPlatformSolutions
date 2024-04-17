@@ -1,0 +1,190 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "impersonation": {},
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ves_sharedcommondataserviceforapps_80328"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "HTTP": {
+          "runAfter": {},
+          "type": "Http",
+          "inputs": {
+            "uri": "https://pocketinvestpbrapi.azurewebsites.net/api/pipbapi",
+            "method": "GET"
+          },
+          "runtimeConfiguration": {
+            "contentTransfer": {
+              "transferMode": "Chunked"
+            }
+          }
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "HTTP": [
+              "Succeeded"
+            ]
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('HTTP')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "loanId": {
+                        "type": "integer"
+                      },
+                      "country": {
+                        "type": "string"
+                      },
+                      "interestRate": {
+                        "type": "integer"
+                      },
+                      "loanOriginator": {
+                        "type": "string"
+                      },
+                      "originatorId": {
+                        "type": "integer"
+                      },
+                      "issuedDate": {
+                        "type": "string"
+                      },
+                      "finalPaymentDate": {
+                        "type": "string"
+                      },
+                      "termType": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "remainingTerm": {
+                        "type": "integer"
+                      },
+                      "initialTerm": {
+                        "type": "integer"
+                      },
+                      "loanAmount": {
+                        "type": "integer"
+                      },
+                      "availableToInvest": {
+                        "type": "number"
+                      },
+                      "minimumInvestmentAmount": {
+                        "type": "integer"
+                      },
+                      "investedAmount": {
+                        "type": "number"
+                      },
+                      "currency": {},
+                      "buyback": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "loanId",
+                      "country",
+                      "interestRate",
+                      "loanOriginator",
+                      "originatorId",
+                      "issuedDate",
+                      "finalPaymentDate",
+                      "termType",
+                      "status",
+                      "remainingTerm",
+                      "initialTerm",
+                      "loanAmount",
+                      "availableToInvest",
+                      "minimumInvestmentAmount",
+                      "investedAmount",
+                      "currency",
+                      "buyback"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Parse_JSON')?['data']",
+          "actions": {
+            "For_each": {
+              "foreach": "@outputs('Parse_JSON')?['body']?['data']",
+              "actions": {
+                "Update_a_row": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "parameters": {
+                      "entityName": "cr471_loanses",
+                      "recordId": "Loans",
+                      "item/cr471_amount": "@items('For_each')?['loanAmount']",
+                      "item/cr471_dateofissue": "@items('For_each')?['issuedDate']",
+                      "item/cr471_interestrate": "@items('For_each')?['interestRate']",
+                      "item/cr471_name": "@{items('For_each')?['loanId']}",
+                      "item/cr471_Originator@odata.bind": "@{items('For_each')?['originatorId']}",
+                      "item/cr471_Platform@odata.bind": "Peerberry"
+                    },
+                    "host": {
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateRecord"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
