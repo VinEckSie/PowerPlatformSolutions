@@ -2,14 +2,13 @@
   "properties": {
     "connectionReferences": {
       "shared_commondataserviceforapps": {
-        "impersonation": {},
-        "runtimeSource": "embedded",
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
         "connection": {
           "connectionReferenceLogicalName": "ves_sharedcommondataserviceforapps_80328"
         },
-        "api": {
-          "name": "shared_commondataserviceforapps"
-        }
+        "runtimeSource": "embedded"
       }
     },
     "definition": {
@@ -39,28 +38,10 @@
         }
       },
       "actions": {
-        "HTTP": {
-          "runAfter": {},
-          "type": "Http",
-          "inputs": {
-            "uri": "https://pocketinvestpbrapi.azurewebsites.net/api/pipbapi",
-            "method": "GET"
-          },
-          "runtimeConfiguration": {
-            "contentTransfer": {
-              "transferMode": "Chunked"
-            }
-          }
-        },
         "Parse_JSON": {
-          "runAfter": {
-            "HTTP": [
-              "Succeeded"
-            ]
-          },
           "type": "ParseJson",
           "inputs": {
-            "content": "@body('HTTP')",
+            "content": "@body('Get_Loans_from_Peerberry_API')",
             "schema": {
               "type": "object",
               "properties": {
@@ -76,7 +57,7 @@
                         "type": "string"
                       },
                       "interestRate": {
-                        "type": "integer"
+                        "type": "number"
                       },
                       "loanOriginator": {
                         "type": "string"
@@ -103,7 +84,7 @@
                         "type": "integer"
                       },
                       "loanAmount": {
-                        "type": "integer"
+                        "type": "number"
                       },
                       "availableToInvest": {
                         "type": "number"
@@ -142,45 +123,275 @@
                 }
               }
             }
+          },
+          "runAfter": {
+            "Get_Loans_from_Peerberry_API": [
+              "Succeeded"
+            ]
           }
         },
-        "Apply_to_each": {
+        "For_each_loan_1": {
+          "type": "Foreach",
           "foreach": "@body('Parse_JSON')?['data']",
           "actions": {
+            "Get_Originator_ID": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "cr471_originators",
+                  "$filter": "cr471_name eq '@{items('For_each_loan_1')?['originatorId']}'",
+                  "$top": 1
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
+              },
+              "runAfter": {
+                "Get_Platform_ID": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Get_Platform_ID": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "cr471_platforms",
+                  "$filter": "cr471_name eq 'Peerberry'",
+                  "$top": 1
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
+              }
+            },
             "For_each": {
-              "foreach": "@outputs('Parse_JSON')?['body']?['data']",
+              "type": "Foreach",
+              "foreach": "@outputs('Get_Originator_ID')?['body/value']",
               "actions": {
-                "Update_a_row": {
-                  "type": "OpenApiConnection",
-                  "inputs": {
-                    "parameters": {
-                      "entityName": "cr471_loanses",
-                      "recordId": "Loans",
-                      "item/cr471_amount": "@items('For_each')?['loanAmount']",
-                      "item/cr471_dateofissue": "@items('For_each')?['issuedDate']",
-                      "item/cr471_interestrate": "@items('For_each')?['interestRate']",
-                      "item/cr471_name": "@{items('For_each')?['loanId']}",
-                      "item/cr471_Originator@odata.bind": "@{items('For_each')?['originatorId']}",
-                      "item/cr471_Platform@odata.bind": "Peerberry"
-                    },
-                    "host": {
-                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-                      "connectionName": "shared_commondataserviceforapps",
-                      "operationId": "UpdateRecord"
-                    },
-                    "authentication": "@parameters('$authentication')"
+                "For_each_1": {
+                  "type": "Foreach",
+                  "foreach": "@outputs('Get_Platform_ID')?['body/value']",
+                  "actions": {
+                    "For_each_4": {
+                      "type": "Foreach",
+                      "foreach": "@outputs('List_rows')?['body/value']",
+                      "actions": {
+                        "Compose": {
+                          "type": "Compose",
+                          "inputs": "@items('For_each_4')?['cr471_name']"
+                        },
+                        "Condition_1": {
+                          "type": "If",
+                          "expression": {
+                            "and": [
+                              {
+                                "equals": [
+                                  "@empty(items('For_each_4')?['cr471_name'])",
+                                  "@bool(true)"
+                                ]
+                              }
+                            ]
+                          },
+                          "actions": {
+                            "Add_a_new_row": {
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "parameters": {
+                                  "entityName": "cr471_loanses",
+                                  "item/cr471_amount": "@items('For_each_loan_1')?['loanAmount']",
+                                  "item/cr471_dateofissue": "@items('For_each_loan_1')?['issuedDate']",
+                                  "item/cr471_interestrate": "@items('For_each_loan_1')?['interestRate']",
+                                  "item/cr471_name": "@{items('For_each_loan_1')?['loanId']}",
+                                  "item/cr471_Originator@odata.bind": "cr471_originators(@{items('For_each')?['cr471_originatorid']})",
+                                  "item/cr471_Platform@odata.bind": "cr471_platforms(@{items('For_each_1')?['cr471_platformid']})"
+                                },
+                                "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                                  "operationId": "CreateRecord",
+                                  "connectionName": "shared_commondataserviceforapps"
+                                }
+                              }
+                            }
+                          },
+                          "else": {
+                            "actions": {
+                              "For_each_2": {
+                                "type": "Foreach",
+                                "foreach": "@outputs('List_rows')?['body/value']",
+                                "actions": {
+                                  "Update_a_row": {
+                                    "type": "OpenApiConnection",
+                                    "inputs": {
+                                      "parameters": {
+                                        "entityName": "cr471_loanses",
+                                        "recordId": "@items('For_each_2')?['cr471_loansid']",
+                                        "item/cr471_amount": "@items('For_each_loan_1')?['loanAmount']",
+                                        "item/cr471_dateofissue": "@items('For_each_loan_1')?['issuedDate']",
+                                        "item/cr471_interestrate": "@items('For_each_loan_1')?['interestRate']",
+                                        "item/cr471_name": "@{items('For_each_loan_1')?['loanId']}",
+                                        "item/cr471_Originator@odata.bind": "cr471_originators(@{items('For_each')?['cr471_originatorid']})",
+                                        "item/cr471_Platform@odata.bind": "cr471_platforms(@{items('For_each_1')?['cr471_platformid']})"
+                                      },
+                                      "host": {
+                                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                                        "operationId": "UpdateRecord",
+                                        "connectionName": "shared_commondataserviceforapps"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "Compose": [
+                              "Succeeded"
+                            ]
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               },
-              "type": "Foreach"
+              "runAfter": {
+                "For_each_3": [
+                  "Skipped"
+                ]
+              }
+            },
+            "List_rows": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "parameters": {
+                  "entityName": "cr471_loanses",
+                  "$filter": "cr471_name eq '@{items('For_each_loan_1')?['loanId']}'"
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
+              },
+              "runAfter": {
+                "Get_Originator_ID": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "For_each_3": {
+              "type": "Foreach",
+              "foreach": "@outputs('List_rows')?['body/value']",
+              "actions": {
+                "length_odata_id": {
+                  "type": "Compose",
+                  "inputs": "@length(body('List_rows')?['value'])"
+                },
+                "Condition": {
+                  "type": "If",
+                  "expression": {
+                    "and": [
+                      {
+                        "equals": [
+                          "@empty(items('For_each_3')?['cr471_name'])",
+                          "@bool(true)"
+                        ]
+                      }
+                    ]
+                  },
+                  "actions": {
+                    "Compose_1": {
+                      "type": "Compose",
+                      "inputs": "OK"
+                    }
+                  },
+                  "else": {
+                    "actions": {
+                      "Compose_2": {
+                        "type": "Compose",
+                        "inputs": "KO"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "length_odata_id": [
+                      "Succeeded"
+                    ]
+                  }
+                },
+                "Compose_3": {
+                  "type": "Compose",
+                  "inputs": "Test skipped ok",
+                  "runAfter": {
+                    "Condition": [
+                      "SKIPPED",
+                      "FAILED"
+                    ]
+                  }
+                }
+              },
+              "runAfter": {
+                "List_rows": [
+                  "Succeeded"
+                ]
+              }
             }
           },
           "runAfter": {
             "Parse_JSON": [
               "Succeeded"
             ]
+          }
+        },
+        "Init_OrigID": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "OrigID",
+                "type": "string"
+              }
+            ]
           },
-          "type": "Foreach"
+          "runAfter": {
+            "Init_PlatformID": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Get_Loans_from_Peerberry_API": {
+          "type": "Http",
+          "inputs": {
+            "uri": "https://pocketinvestpbrapi.azurewebsites.net/api/pipbapi",
+            "method": "GET"
+          },
+          "runAfter": {
+            "Init_OrigID": [
+              "Succeeded"
+            ]
+          },
+          "runtimeConfiguration": {
+            "contentTransfer": {
+              "transferMode": "Chunked"
+            }
+          }
+        },
+        "Init_PlatformID": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "PlatformID",
+                "type": "string"
+              }
+            ]
+          },
+          "runAfter": {}
         }
       }
     },

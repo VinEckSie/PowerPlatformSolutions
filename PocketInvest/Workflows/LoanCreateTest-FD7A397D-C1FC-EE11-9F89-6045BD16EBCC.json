@@ -2,14 +2,13 @@
   "properties": {
     "connectionReferences": {
       "shared_commondataserviceforapps": {
-        "impersonation": {},
-        "runtimeSource": "embedded",
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        },
         "connection": {
           "connectionReferenceLogicalName": "ves_sharedcommondataserviceforapps_80328"
         },
-        "api": {
-          "name": "shared_commondataserviceforapps"
-        }
+        "runtimeSource": "embedded"
       }
     },
     "definition": {
@@ -40,7 +39,6 @@
       },
       "actions": {
         "List_rows": {
-          "runAfter": {},
           "type": "OpenApiConnection",
           "inputs": {
             "parameters": {
@@ -50,13 +48,14 @@
             },
             "host": {
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-              "connectionName": "shared_commondataserviceforapps",
-              "operationId": "ListRecords"
-            },
-            "authentication": "@parameters('$authentication')"
-          }
+              "operationId": "ListRecords",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          },
+          "runAfter": {}
         },
         "For_each": {
+          "type": "Foreach",
           "foreach": "@outputs('List_rows')?['body/value']",
           "actions": {
             "Add_a_new_row": {
@@ -67,14 +66,14 @@
                   "item/cr471_amount": 10,
                   "item/cr471_dateofissue": "2024-02-15",
                   "item/cr471_interestrate": 10,
-                  "item/cr471_name": "@items('For_each')?['cr471_originatorid']"
+                  "item/cr471_name": "@items('For_each')?['cr471_originatorid']",
+                  "item/cr471_Originator@odata.bind": "cr471_originators(@{items('For_each')?['cr471_originatorid']})"
                 },
                 "host": {
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-                  "connectionName": "shared_commondataserviceforapps",
-                  "operationId": "CreateRecord"
-                },
-                "authentication": "@parameters('$authentication')"
+                  "operationId": "CreateRecord",
+                  "connectionName": "shared_commondataserviceforapps"
+                }
               }
             }
           },
@@ -82,8 +81,7 @@
             "List_rows": [
               "Succeeded"
             ]
-          },
-          "type": "Foreach"
+          }
         }
       }
     },
