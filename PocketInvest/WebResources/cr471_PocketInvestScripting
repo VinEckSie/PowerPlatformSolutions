@@ -1,64 +1,59 @@
 ///<reference path="typings/globals/xrm/index.d.ts" />
 
+this.RefreshLoanData = function (primaryControl)
+{
+    var parameters = {}; 
+
+    var req = new XMLHttpRequest();
+    req.open("POST", "https://prod-08.germanywestcentral.logic.azure.com:443/workflows/639ed33d83c34e00a42b9bcd5a22cd9f/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=oJiX9dPVckd5KtvqpPuxz3CIK1kvEnK0oPJRKwLPFyc", true);
+    req.setRequestHeader("OData-MaxVersion", "4.0");
+    req.setRequestHeader("OData-Version", "4.0");
+    req.setRequestHeader("Accept", "application/json");
+    req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    
+    req.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            req.onreadystatechange = null;
+            if (this.status === 200) {
+                var results = JSON.parse(this.response);
+                // handle the response from the flow
+            } else {
+                var error = JSON.parse(this.response).error;
+                // handle the error
+            }
+        }
+    };
+    req.send(JSON.stringify(parameters));
+}
+
 this.platformOnLoad = function (executionContext)
 {
 	var formContext = executionContext.getFormContext(); 
 
 	formContext.ui.setFormNotification("Welcome to Pocket Invest. :). Here, you have a list of your loan platforms (Dev Version v033)","INFO","0001");  
-
-    // const entityFormOptions = {
-    //     entityName: "Mintos",
-    //     entityId: "136403ec-24d0-ee11-904d-002248e53c36"
-    // };
     
-    // formContext.navigation.openForm(entityFormOptions);
-
 }
 
 this.BlacklistPlatform = function (primaryControl)
 {
 	var formContext = primaryControl;
-    var confirmStrings = { text:"Do you really want blacklist ".concat(primaryControl.getAttribute("cr471_name").getValue()) + " ?", title:"Blacklist confirmation"};
+    var confirmStrings = { text:"Do you really want blacklist".concat(primaryControl.getAttribute("cr471_name").getValue()) + " ?", title:"Blacklist confirmation"};
     var confirmOptions = { height: 200, width: 450 };
 
-    // Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
-    // function (success) {    
-    //     if (success.confirmed)
-    //     {
-    //         primaryControl.getAttribute("statecode").setValue(1);
-    //         Xrm.Page.data.save();
-    //     }
-    // });
-
-        // Xrm.Utility.openEntityForm("cr471_platform","136403ec-24d0-ee11-904d-002248e53c36");
-
-    // var entityFormOptions = {};
-    // entityFormOptions["entityName"] = "cr471_platform";
-    // entityFormOptions["entityId"] = "136403ec-24d0-ee11-904d-002248e53c36";
-    
-    // // Open the form.
-    // Xrm.Navigation.openForm(entityFormOptions).then(
-    //     function (success) {
-    //         console.log(success);
-    //     },
-    //     function (error) {
-    //         console.log(error);
-    //     });
-
-    const entityFormOptions = {
-            entityName: "cr471_platform",
-            entityId: "136403ec-24d0-ee11-904d-002248e53c36",
-        };
-
-        Xrm.Navigation.openForm(entityFormOptions);
-    
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+    function (success) {    
+        if (success.confirmed)
+        {
+            primaryControl.getAttribute("statecode").setValue(1);
+            Xrm.Page.data.save();
+        }
+    });    
 }
 
 
 this.loanOnLoad = function (executionContext)
 {
 	var formContext         = executionContext.getFormContext();    
-
 
 	formContext.ui.setFormNotification("Welcome to Pocket Invest. :). Here, you have a list of your loans  (API " + Xrm.Utility.getGlobalContext().getVersion() + ", Dev Version v071)","INFO","0002");
 

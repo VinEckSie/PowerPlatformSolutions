@@ -84,7 +84,6 @@
       <RootComponent type="1" schemaName="cr471_originator" behavior="0" />
       <RootComponent type="1" schemaName="cr471_platform" behavior="0" />
       <RootComponent type="1" schemaName="cr471_transaction" behavior="2" />
-      <RootComponent type="29" id="{fd7a397d-c1fc-ee11-9f89-6045bd16ebcc}" behavior="0" />
       <RootComponent type="29" id="{fe7a397d-c1fc-ee11-9f89-6045bd16ebcc}" behavior="0" />
       <RootComponent type="300" schemaName="cr471_pocketinvestdefaultcommandlibrary_077ed" behavior="0" />
       <RootComponent type="60" id="{b30108f9-bcd0-ee11-904d-002248e53c36}" />
