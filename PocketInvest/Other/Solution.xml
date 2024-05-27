@@ -114,14 +114,14 @@
         <Dependent type="80" schemaName="cr471_PocketInvest" displayName="PocketInvest" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="mspp_poll_placement.svg" displayName="mspp_poll_placement.svg" solution="PowerPages_AppResources (1.0.2312.1)">
-          <package>PowerPages_Core (1.0.2404.86)</package>
+        <Required type="61" schemaName="mspp_poll_placement.svg" displayName="mspp_poll_placement.svg" solution="PowerPages_AppResources (1.0.2405.2)">
+          <package>PowerPages_Core (1.0.2405.98)</package>
         </Required>
         <Dependent type="62" schemaName="cr471_PocketInvest" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="mspp_site_markers.svg" displayName="mspp_site_markers.svg" solution="PowerPages_AppResources (1.0.2312.1)">
-          <package>PowerPages_Core (1.0.2404.86)</package>
+        <Required type="61" schemaName="mspp_site_markers.svg" displayName="mspp_site_markers.svg" solution="PowerPages_AppResources (1.0.2405.2)">
+          <package>PowerPages_Core (1.0.2405.98)</package>
         </Required>
         <Dependent type="62" schemaName="cr471_PocketInvest" />
       </MissingDependency>
