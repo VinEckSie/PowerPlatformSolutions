@@ -115,13 +115,13 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="mspp_poll_placement.svg" displayName="mspp_poll_placement.svg" solution="PowerPages_AppResources (1.0.2405.2)">
-          <package>PowerPages_Core (1.0.2405.98)</package>
+          <package>PowerPages_Core (1.0.2407.104)</package>
         </Required>
         <Dependent type="62" schemaName="cr471_PocketInvest" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="mspp_site_markers.svg" displayName="mspp_site_markers.svg" solution="PowerPages_AppResources (1.0.2405.2)">
-          <package>PowerPages_Core (1.0.2405.98)</package>
+          <package>PowerPages_Core (1.0.2407.104)</package>
         </Required>
         <Dependent type="62" schemaName="cr471_PocketInvest" />
       </MissingDependency>
